@@ -1,17 +1,12 @@
 FROM python:3.8
 FROM wmhchallenge/sysu_media_2
-#FROM wmhchallenge/pgs
-#FROM ubuntu:20.04
-#WORKDIR /segmentation
-#COPY . .
+
 
 #directory to store input/output/data
 ENV FLYWHEEL /flywheel/v0
 RUN mkdir -p ${FLYWHEEL}
 RUN mkdir  /flywheel/v0/input
 RUN mkdir  /flywheel/v0/output
-#RUN mkdir  ${FLYWHEEL}/input/pre
-#RUN mkdir  ${FLYWHEEL}/input/orig
 
 # Prepare environment
 RUN apt-get update && \
@@ -80,15 +75,6 @@ RUN pip install --no-cache flywheel-sdk \
  && pip install --no-cache docker \
  && pip install --no-cache pathlib 
 
-
-#Copy files (FLAIR and T1)
-#COPY FLAIR ${FLYWHEEL}/input/pre
-#COPY T1 ${FLYWHEEL}/input/pre
-
-#Volume to gain access to docker commands (hopefully)
-#RUN apt-get -yqq update && apt-get -yqq install docker.io
-#VOLUME /var/run/docker.sock
-
 #copy script and manifest into docker container 
 COPY manifest.json ${FLYWHEEL}/manifest.json
 COPY run.py ${FLYWHEEl}/run.py
@@ -107,4 +93,4 @@ RUN chmod +x ${FLYWHEEL}/docker-env.sh
 #Workdirectory set
 WORKDIR /flywheel/v0
 ENTRYPOINT [ "python /flywheel/v0/run.py" ]
-#/flywheel/v0
+
