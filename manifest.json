@@ -1,8 +1,8 @@
 {
-    "name": "wmhssysu2",
-    "label": "WMHS: white matter hyperintensities segmentation application using sysu_media_2 method",
+    "name": "wmhssysu2debug",
+    "label": "WMHS: debug application using sysu_media_2 method",
     "description": "Creates a mask of segmented white matter hyperintensities from a T1 and FLAIR image",
-    "version": "1.0.3",
+    "version": "1.0.0",
     "inputs": {
         "api_key": {
             "base": "api-key"
@@ -36,7 +36,7 @@
     "custom": {
         "gear-builder": {
             "category": "analysis",
-            "image": "debarunde/segmentationsysu2:0.1.1"
+            "image": "debarunde/segmentationsysu2-1:0.0.1"
         },
         "flywheel":{"suite": "BrainScienceCenter"}
     }

@@ -34,11 +34,11 @@ os.rename(flair_path, newname) # do the rename
 
 t1_path = context.get_input_path('T1')
 path = os.path.dirname(t1_path) # get the path minus the filename
-newname = os.path.join(path, 'T1_INPUT.nii.gz') # new name is path plus 'T1.nii.gz'
+newname = os.path.join(path, 'T1.nii.gz') # new name is path plus 'T1.nii.gz'
 os.rename(t1_path, newname) # do the rename
 
 # Transform using FSL
-os.system('/usr/share/fsl/bin/flirt -in /flywheel/v0/input/T1/T1_INPUT.nii.gz -ref /flywheel/v0/input/FLAIR/FLAIR.nii.gz -out /flywheel/v0/input/T1/T1.nii.gz -dof 6 -searchrx -180 180 -searchry -180 180 -searchrz -180 180 -omat /input/mat/T12FLAIR.mat') #possible straight directory for -out flag
+#os.system('/usr/share/fsl/bin/flirt -in /flywheel/v0/input/T1/T1_INPUT.nii.gz -ref /flywheel/v0/input/FLAIR/FLAIR.nii.gz -out /flywheel/v0/input/T1/T1.nii.gz -dof 6 -searchrx -180 180 -searchry -180 180 -searchrz -180 180 -omat /input/mat/T12FLAIR.mat') #possible straight directory for -out flag
 
 for fname in os.listdir('/flywheel/v0/input'):
       if os.path.isfile(os.path.join('/flywheel/v0/input/FLAIR', 'FLAIR.nii.gz')):
@@ -54,7 +54,7 @@ shutil.copy(os.path.join('/output', 'result.nii.gz'), os.path.join('/flywheel/v0
 
 
 # convert to FLAIR space and write
-os.system('/usr/share/fsl/bin/convert_xfm -omat /input/mat/FLAIR2T1.mat -inverse /input/mat/T12FLAIR.mat')
-os.system('/usr/share/fsl/bin/applywarp --ref=/flywheel/v0/input/T1/T1_INPUT.nii.gz --in=/output/result.nii.gz --out=/output/resultT1.nii.gz --premat=/input/mat/FLAIR2T1.mat --interp=nn')
-shutil.copy(os.path.join('/output','resultT1.nii.gz'), os.path.join('/flywheel/v0/output', output_file_T1_name))
+#os.system('/usr/share/fsl/bin/convert_xfm -omat /input/mat/FLAIR2T1.mat -inverse /input/mat/T12FLAIR.mat')
+#os.system('/usr/share/fsl/bin/applywarp --ref=/flywheel/v0/input/T1/T1_INPUT.nii.gz --in=/output/result.nii.gz --out=/output/resultT1.nii.gz --premat=/input/mat/FLAIR2T1.mat --interp=nn')
+#shutil.copy(os.path.join('/output','resultT1.nii.gz'), os.path.join('/flywheel/v0/output', output_file_T1_name))
 
