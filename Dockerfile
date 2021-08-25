@@ -27,8 +27,7 @@ RUN apt-get update && \
                     default-jdk \
                     git && \
     curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
-    apt-get install -y --no-install-recommends \
-                    nodejs && \
+    apt-get install -y --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install FSL
@@ -62,25 +61,27 @@ ENV PATH="${FSLDIR}/bin:$PATH"
 ENV FSLOUTPUTTYPE="NIFTI_GZ"
 
 # Install c3d
-ENV C3DPATH="/opt/convert3d-nightly" \
-    PATH="/opt/convert3d-nightly/bin:$PATH"
-RUN echo "Downloading Convert3D ..." \
-   && mkdir -p /opt/convert3d-nightly \
-   && curl -fsSL --retry 5 https://sourceforge.net/projects/c3d/files/c3d/Nightly/c3d-nightly-Linux-x86_64.tar.gz/download \
-   | tar -xz -C /opt/convert3d-nightly --strip-components 1
+#ENV C3DPATH="/opt/convert3d-nightly" \
+#    PATH="/opt//bin:$PATH"
+#RUN echo "Downloading Convert3D ..." \
+#   && mkdir -p /opt/convert3d-nightly \
+#   && curl -fsSL --retry 5 https://sourceforge.net/projects/c3d/files/c3d/Nightly/c3d-nightly-Linux-x86_64.tar.gz/download \
+#   | tar -xz -C /opt/convert3d-nightly --strip-components 1
 
+COPY --from=pyushkevich/itksnap:latest /usr/local/bin/c3d /opt/bin/c3d
+ENV PATH="/opt/bin:$PATH"
 
 # Install python packages
 RUN pip install --no-cache flywheel-sdk \
  && pip install --no-cache docker \
- && pip install --no-cache pathlib 
+ && pip install --no-cache pathlib
 
-#copy script and manifest into docker container 
+#copy script and manifest into docker container
 COPY manifest.json ${FLYWHEEL}/manifest.json
 COPY run.py ${FLYWHEEl}/run.py
 COPY . ${FLYWHEEL}/
 
-#COPY run.py ${FLYWHEEL}/run.py #Script goes here 
+#COPY run.py ${FLYWHEEL}/run.py #Script goes here
 RUN chmod +x ${FLYWHEEL}/*
 RUN chmod +x ${FLYWHEEL}/run.py
 #RUN chmod +x ${FLYWHEEL}/src/*
@@ -93,4 +94,3 @@ RUN chmod +x ${FLYWHEEL}/docker-env.sh
 #Workdirectory set
 WORKDIR /flywheel/v0
 ENTRYPOINT [ "python /flywheel/v0/run.py" ]
-
