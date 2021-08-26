@@ -1,1 +1,3 @@
 run_wt_old.py
+debug/
+.dockerignore

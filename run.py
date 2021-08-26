@@ -32,7 +32,7 @@ os.system('mkdir -p /input/mat')
 flair_file = context.get_input_path('FLAIR')
 flair_path = os.path.dirname(flair_file) # get the path minus the filename
 new_flair_file = os.path.join(flair_path, 'FLAIR.nii.gz')
-if os.path.isfile(flair_file) and not os.path.isfile(new_t1_file): # Don't run if already renamed (i.e. in debugging)
+if os.path.isfile(flair_file) and not os.path.isfile(new_flair_file): # Don't run if already renamed (i.e. in debugging)
     os.rename(flair_file, new_flair_file)
 
 t1_file = context.get_input_path('T1')
