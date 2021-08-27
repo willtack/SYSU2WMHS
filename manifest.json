@@ -1,46 +1,46 @@
 {
-    "name": "wmhssysu2debug",
-    "label": "WMHS: debug application using sysu_media_2 method",
-    "description": "Creates a mask of segmented white matter hyperintensities from a T1 and FLAIR image",
-    "version": "1.0.0",
-    "inputs": {
-        "api_key": {
-            "base": "api-key"
-        },
-        "FLAIR": {
-            "base": "file",
-            "description": "Path to directory containing FLAIR and T1 image",
-            "optional": false
-        },
-        "T1": {
-            "base":"file",
-            "description":"Path to directory containing T1 and FLAIR image",
-            "optional": false
-        }
-    },
-    "config": {
-    },
-    "command": "python /flywheel/v0/run.py",
-         "environment": {
-        "FLYWHEEL": "/flywheel/v0",
-        "FSLDIR": "/usr/share/fsl",
-        "FSLMULTIFILEQUIT": "TRUE",
-        "FSLOUTPUTTYPE": "NIFTI_GZ",
-        "PATH": "/opt/bin:/usr/share/fsl/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-"
-    },
-    "author": "Debarun De",
-    "maintainer": "debarun.de20@gmail.com",
-    "cite": "",
-    "license": "BSD-3-Clause",
-    "source": "",
-    "url": "https://github.com/DebarunDe/SYSU2WMHS.git",
-    "custom": {
-        "gear-builder": {
-            "category": "analysis",
-            "image": "debarunde/segmentationsysu2-1:0.2.1"
-        },
-        "flywheel":{"suite": "BrainScienceCenter"}
-    }
+	"name": "wmhssysu2",
+	"label": "WMHS: white matter hyperintensities segmentation application using sysu_media_2 method",
+	"description": "Creates a mask of segmented white matter hyperintensities from a T1 and FLAIR image",
+	"version": "1.2.1_0.2.1",
+	"inputs": {
+		"api_key": {
+			"base": "api-key"
+		},
+		"FLAIR": {
+			"base": "file",
+			"description": "Path to directory containing FLAIR and T1 image",
+			"optional": false
+		},
+		"T1": {
+			"base": "file",
+			"description": "Path to directory containing T1 and FLAIR image",
+			"optional": false
+		}
+	},
+	"config": {},
+	"command": "python /flywheel/v0/run.py",
+	"environment": {
+		"FLYWHEEL": "/flywheel/v0",
+		"FSLDIR": "/usr/share/fsl",
+		"FSLMULTIFILEQUIT": "TRUE",
+		"FSLOUTPUTTYPE": "NIFTI_GZ",
+		"PATH": "/opt/bin:/usr/share/fsl/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+	},
+	"author": "Debarun De",
+	"maintainer": "debarun.de20@gmail.com",
+	"cite": "",
+	"license": "BSD-3-Clause",
+	"source": "",
+	"url": "https://github.com/DebarunDe/SYSU2WMHS.git",
+	"custom": {
+		"gear-builder": {
+			"category": "analysis",
+			"image": "debarunde/segmentationsysu2:0.2.1"
+		},
+		"flywheel": {
+			"suite": "BrainScienceCenter"
+		}
+	}
 
 }
