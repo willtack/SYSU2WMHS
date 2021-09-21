@@ -13,6 +13,7 @@ for subj in ${dataDir}/*S*; do
     root=${ses}/${sesName}_${subName}
     fslreorient2std ${root}_flair.nii.gz ${root}_reorient_flair.nii.gz
     fslreorient2std ${root}_T1w_trim_to_flair.nii.gz ${root}_reorient_T1w_trim_to_flair.nii.gz
+    fslreorient2std ${root}_flair_WMH_pgs_EDIT1.nii.gz ${root}_flair_WMH_pgs_reorient_EDIT1.nii.gz
     fslmaths ${root}_reorient_flair.nii.gz -mul 10 ${root}_reorient_10_flair.nii.gz
 
     #reorganize
