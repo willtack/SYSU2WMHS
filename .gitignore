@@ -1,3 +1,6 @@
 run_wt_old.py
 debug/
 .dockerignore
+test/WMH_Algorithms_TestDataset
+test/WMH_Algorithms_TestDataset.zip
+test/test-data
